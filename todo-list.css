@@ -1,0 +1,49 @@
+body {
+    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    height: 900px;
+}
+
+/* criei a cor https://mycolor.space/gradient3?ori=to+right+top&hex=%23D16BA5&hex2=%2386A8E7&hex3=%235FFBF1&submit=submit */
+
+header {
+    background-color: rgba(255, 255, 255, 0.726);
+    height: 80%;
+    margin: 180px 150px;
+    border-radius: 10%;
+}
+
+section {
+    text-align: center;
+    padding-top: 80px;
+}
+
+#lista-tarefas {
+    height: 200px;
+    list-style-type: none;
+    margin: 20px 150px;
+}
+
+#criar-tarefa,
+#apaga-tudo,
+#remover-finalizados,
+#salvar-tarefas {
+    cursor: pointer;
+    height: 36px;
+    border-radius: 18px;
+    background-color: rgba(95, 40, 95, 0.938);
+    color: rgba(255, 255, 255, 0.747);
+}
+
+#texto-tarefa {
+    border-color: rgba(95, 40, 95, 0.938);
+    ;
+}
+
+.selected {
+    background-color: rgb(128, 128, 128);
+}
+
+.completed {
+    text-decoration: line-through;
+    /* riscar texto */
+}
