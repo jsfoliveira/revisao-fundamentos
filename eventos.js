@@ -1,5 +1,8 @@
 const weekDaysList = document.querySelector('.week-days');
 const container = document.querySelector('.input-container');
+const myTask = document.querySelector('.my-tasks');
+const input = document.querySelector('#task-input');
+const btnAdd = document.querySelector('#btn-add');
 
 function createDaysOfTheWeek() {
     const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
@@ -31,6 +34,21 @@ const criarDias = () => {
 criarDias();
 const getHolidays = document.querySelectorAll('.holiday');
 const getFriday = document.querySelectorAll('.friday');
+const getDay = document.querySelectorAll('.day');
+console.log(getDay);
+const pintar = (event) => {
+    event.target.style.fontSize = '28px';
+}
+
+const zoomout = (event) => {
+    event.target.style.fontSize = '16px';
+}
+
+for(let i = 0; i < getDay.length; i += 1){
+    getDay[i].addEventListener('mouseover', pintar)
+    getDay[i].addEventListener('mouseout', zoomout)
+}
+
 
 const botoes = () => {
     const btnFeriado = document.createElement('button');
@@ -56,18 +74,57 @@ const mudarFeriado = () => {
     }
 }
 mudarFeriado();
-
-const mudarSexta = () => {
-    const frase = 'Seeextou!'
-    for (let i = 0; i < getFriday.length; i += 1){
-        if(getFriday[i].innerHTML !== frase) {
-            getFriday[i].innerHTML = frase
-        } else {
-            getFriday[i].remove(frase);
-        }
-    }
-}
-mudarSexta();
-
 document.querySelector('#btn-holiday').addEventListener('click', mudarFeriado);
-document.querySelector('#btn-friday').addEventListener('click', mudarSexta);
+
+function textoSexta(fridaysArray) {
+    let fridays = document.getElementsByClassName('friday');
+    let newFridayText = 'SEXTOU o/';
+  
+    document.querySelector('#btn-friday').addEventListener('click', function() {
+    for (let index = 0; index < fridays.length; index += 1) {
+      if (fridays[index].innerHTML !== newFridayText) {
+          fridays[index].innerHTML = newFridayText;
+      } else {
+          fridays[index].innerHTML = fridaysArray[index];
+        }
+      }
+    })
+  };
+  
+  let dezFridays = [ 4, 11, 18, 25 ];
+  textoSexta(dezFridays);
+
+  const criarTarefa = () => {
+    const tarefa = document.createElement('span');
+    myTask.appendChild(tarefa);
+    tarefa.className = 'task';
+    tarefa.style.display = 'block';
+    
+    tarefa.innerHTML = input.value;
+    input.value = '';
+};
+criarTarefa();
+btnAdd.addEventListener('click', criarTarefa);
+
+const myTasks = document.querySelector('.task');
+
+const pegarCorTarefa = () => {
+    let selectedTask = document.getElementsByClassName('task selected');
+
+  myTasks.addEventListener('click', function(event) {
+    if (selectedTask.length === 0) {
+      event.target.className = 'task selected';
+    } else {
+      event.target.className = 'task';
+    }
+  });
+};
+pegarCorTarefa();
+
+const pintarli = (event) => {
+    event.target.classList.toggle('selected');
+}
+
+for(let i = 0; i < getDay.length; i += 1){
+    getDay[i].addEventListener('click', pintarli)
+}
